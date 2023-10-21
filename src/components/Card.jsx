@@ -27,10 +27,12 @@ function Card({ num = 1, item }) {
   return (
     <>
       <div className='cardbox'>
-        <img src={src} alt={src} className='img' />
+        <div className='img-container'>
+          <img src={src} alt={src} className='img' />
+        </div>
         <div className='container'>
           <p className='time'>10 minutes ago</p>
-          <p className='description'>{item.content}</p>
+          <div className='description'>{item.content}</div>
           <p className='date'>{item.createdAt}</p>
         </div>
       </div>
@@ -40,14 +42,12 @@ function Card({ num = 1, item }) {
 
 export default function CardList({ items }) {
   return (
-    <ul>
-      {items.map(item => {
-        return (
-          <li key={item.id}>
-            <Card num={item.id} item={item} />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <div>
+        {items.map(item => {
+          return <Card num={item.id} item={item} />;
+        })}
+      </div>
+    </>
   );
 }
